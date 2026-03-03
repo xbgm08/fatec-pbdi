@@ -1,0 +1,32 @@
+MAJOR.MINOR.PATCH
+v1.0.0
+
+corrigimos um bug, a calculadora tinha problemas ao tentar somar negativos
+v1.0.1
+
+ajustamos o desempenho, agora a calculadora soma mais rápido
+v1.0.2
+
+ajustamos a qualidade do código 
+v1.0.3
+
+implementamos a subtração
+v1.1.0
+
+ajuste de qualidade de codigo
+v1.1.1
+
+implementamos a multiplicação
+v1.2.0
+
+alteramos o numero de parametros da soma
+v2.0.0
+
+implementamos a potência
+v2.1.0
+
+corrigimos o funcionamento da potência
+v2.1.1
+
+agora a soma opera com quatro operandos
+v.3.0.0
