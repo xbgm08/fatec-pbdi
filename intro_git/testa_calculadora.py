@@ -2,5 +2,6 @@ import calculadora
 
 a = 2
 b = 3
-soma = a + b
+soma = calculadora.somar(a, b)
+
 print(f'{a} + {b} = {soma}')
