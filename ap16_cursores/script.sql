@@ -1,3 +1,34 @@
+-- Exibir os nomes dos youtubers que começaram a partir de 2010 e têm, pelo menos, 60 milhões de inscritos,
+-- usando um parâmetro nomeado e outro pela ordem
+-- DO $$
+-- DECLARE
+-- 	-- 1. Declaração
+-- 	v_ano INT := 2010;
+-- 	v_inscritos INT := 60000000;
+-- 	cur_ano_inscritos CURSOR (ano INT, inscritos INT) 
+-- 		FOR SELECT youtuber FROM tb_top_youtubers
+-- 		WHERE started >= ano AND subscribers >= inscritos;
+-- 	v_youtuber VARCHAR(200);
+-- BEGIN
+-- 	-- 2. Abertura
+-- 	-- Exemplo pela ordem
+-- 	-- OPEN cur_ano_inscritos (v_ano, v_inscritos);
+
+-- 	-- Exemplo com parêmetros nomeados
+-- 	OPEN cur_ano_inscritos(inscritos := v_inscritos, ano := v_ano);
+-- 	LOOP
+-- 		-- 3. Recuperação de dados
+-- 		FETCH cur_ano_inscritos INTO v_youtuber;
+		
+-- 		EXIT WHEN NOT FOUND;
+		
+-- 		RAISE NOTICE 'Nome: %', v_youtuber;
+-- 	END LOOP;
+-- 	-- 4. Fechamento do cursor
+-- 	CLOSE cur_ano_inscritos;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
 -- Fazer um cursor vinculado para exibir o nome de cada youtuber e seu número de inscrições
 -- DO $$
 -- DECLARE
