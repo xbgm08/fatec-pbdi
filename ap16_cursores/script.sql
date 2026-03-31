@@ -1,3 +1,72 @@
+-- Faça um cursor que remove todas as tuplas em que video_count é desconhido e exibe as tuplas remanescentes 
+-- na tabela, de baixo para cima
+-- Solução Bossini
+-- DO $$
+-- DECLARE
+-- 	cur_delete REFCURSOR;;
+-- 	tupla RECORD;
+-- BEGIN
+-- 	OPEN cur_delete SCROLL
+-- 		FOR SELECT * FROM tb_top_youtubers;
+
+-- 	LOOP
+-- 		FETCH cur_delete INTO tupla;
+		
+-- 		EXIT WHEN NOT FOUND;
+		
+-- 		IF tupla.video_count IS NULL THEN
+-- 			-- CURRENT OF seleciona a linha atual do cursor 
+-- 			DELETE FROM tb_top_youtubers WHERE CURRENT OF cur_delete;
+-- 		END IF;
+-- 	END LOOP;
+
+-- 	LOOP
+-- 		-- BACKWARD faz iterar ao contrario se o cursor for aberto como SCROLL 
+-- 		FETCH BACKWARD FROM cur_delete INTO tupla;
+
+-- 		EXIT WHEN NOT FOUND;
+
+-- 		RAISE NOTICE 'Tupla: %', tupla;
+-- 	END LOOP;
+-- 	CLOSE cur_delete;
+-- END;
+-- $$
+
+-- Solução inicial
+-- DO $$
+-- DECLARE
+-- 	cur_remove_tupla CURSOR 
+-- 		FOR SELECT * FROM tb_top_youtubers;
+-- 	cur_exibe_tupla CURSOR 
+-- 		FOR SELECT * FROM tb_top_youtubers
+-- 		ORDER BY cod_top_youtubers DESC;
+-- 	tupla RECORD;
+-- BEGIN
+-- 	OPEN cur_remove_tupla;
+
+-- 	LOOP
+-- 		FETCH cur_remove_tupla INTO tupla;
+		
+-- 		EXIT WHEN NOT FOUND;
+		
+-- 		IF tupla.video_count IS NULL THEN
+-- 			DELETE FROM tb_top_youtubers WHERE cod_top_youtubers = tupla.cod_top_youtubers;
+-- 		END IF;
+-- 	END LOOP;
+-- 	CLOSE cur_remove_tupla;
+
+-- 	OPEN cur_exibe_tupla;
+-- 	LOOP
+-- 		FETCH cur_exibe_tupla INTO tupla;
+
+-- 		EXIT WHEN NOT FOUND;
+
+-- 		RAISE NOTICE 'Tupla: %', tupla;
+-- 	END LOOP;
+-- 	CLOSE cur_exibe_tupla;
+-- END;
+-- $$
+
 -- Exibir os nomes dos youtubers que começaram a partir de 2010 e têm, pelo menos, 60 milhões de inscritos,
 -- usando um parâmetro nomeado e outro pela ordem
 -- DO $$
